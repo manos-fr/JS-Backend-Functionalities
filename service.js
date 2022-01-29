@@ -1,12 +1,24 @@
 import axios from 'axios';
 
-export const getData = (data) => {
+let axiosConfig = {
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8',
+    'Access-Control-Allow-Origin': '*',
+  },
+};
+
+export const postData = (data) => {
   axios
-    .post('https://workflows.routee.net/test_assessment', data.users)
-    .then(function (response) {
+    .post(
+      'https://workflows.routee.net/test_assessment',
+      JSON.stringify(data?.users),
+      axiosConfig
+    )
+    .then((response) => {
       console.log(response);
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((error) => {
+      console.error(`Cannot reach API, Status 500 => Response ${error}`);
+      console.log(error.response.data);
     });
 };
