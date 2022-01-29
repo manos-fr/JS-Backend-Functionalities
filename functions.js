@@ -18,7 +18,6 @@ export function dbActions(data) {
       console.log('Table created');
     });
   });
-  console.log('Connected!');
   data.users.forEach((element) => {
     var sqlInsert = `INSERT INTO users (${keys[0]},${keys[1]},${keys[2]},${keys[3]},${keys[4]},${keys[5]}) VALUES (${element}.${keys[0]},${keys[1]},${keys[2]},${keys[3]},${keys[4]},${keys[5]})`;
     con.query(sqlInsert, function (err, result) {
