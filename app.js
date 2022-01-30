@@ -11,8 +11,6 @@ const datesToBeChecked = [
   },
 ];
 
-mainFunctionality(data, datesToBeChecked, postData);
-
 function mainFunctionality(data, dates, postData) {
   addMyEmail(data);
   if (checkDates(dates, dates)) {
@@ -22,3 +20,5 @@ function mainFunctionality(data, dates, postData) {
     postData(data);
   }
 }
+
+mainFunctionality(data, datesToBeChecked, postData);
