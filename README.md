@@ -3,7 +3,7 @@
 - Download or clone the repo
 - Go into the directory
 - You should already have Node.js installed
-- Install the code dependencies with npm install --force command
+- Install the code dependencies with npm install command
 - node app.js (to run)
 
 ## Node.js handle child threads?
