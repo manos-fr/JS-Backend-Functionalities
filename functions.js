@@ -10,8 +10,8 @@ export function dbActions(data) {
   let keys = Object.keys(data.users[0]);
   let newKeys = [];
   keys.forEach((x) => {
-    x?.replace(/\s+/g, '_');
-    newKeys.push(x);
+    let s = x?.replace(/\s+/g, '_');
+    newKeys.push(s);
   });
 
   con.connect(function (err) {
