@@ -8,18 +8,31 @@ export function dbActions(data) {
     database: 'mydb',
   });
   let keys = Object.keys(data.users[0]);
+  let newKeys = [];
+  keys.forEach((x) => {
+    x?.replace(/\s+/g, '_');
+    newKeys.push(x);
+  });
 
   con.connect(function (err) {
     if (err) throw err;
     console.log('Connected!');
-    const sql = `CREATE TABLE users (${keys[0]} VARCHAR(255), ${keys[1]} VARCHAR(255), ${keys[2]} VARCHAR(255), ${keys[3]} VARCHAR(255), ${keys[4]} VARCHAR(255), ${keys[5]} VARCHAR(255))`;
+    let ifExists = 'SHOW TABLES LIKE users';
+    con.query(ifExists, function (err, result) {
+      if (err) throw err;
+      if (result) {
+        console.log('Table exists!');
+        return;
+      }
+    });
+    const sql = `CREATE TABLE users (${newKeys[0]} VARCHAR(255), ${newKeys[1]} VARCHAR(255), ${newKeys[2]} VARCHAR(255), ${newKeys[3]} VARCHAR(255), ${newKeys[4]} VARCHAR(255), ${newKeys[5]} VARCHAR(255))`;
     con.query(sql, function (err, result) {
       if (err) throw err;
       console.log('Table created');
     });
   });
   data.users.forEach((element) => {
-    var sqlInsert = `INSERT INTO users (${keys[0]},${keys[1]},${keys[2]},${keys[3]},${keys[4]},${keys[5]}) VALUES (${element}.${keys[0]},${keys[1]},${keys[2]},${keys[3]},${keys[4]},${keys[5]})`;
+    var sqlInsert = `INSERT INTO users (${newKeys[0]},${newKeys[1]},${newKeys[2]},${newKeys[3]},${newKeys[4]},${newKeys[5]}) VALUES (${element}.${newKeys[0]},${newKeys[1]},${newKeys[2]},${newKeys[3]},${newKeys[4]},${newKeys[5]})`;
     con.query(sqlInsert, function (err, result) {
       if (err) throw err;
       console.log(` record inserted`);
