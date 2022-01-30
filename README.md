@@ -28,4 +28,4 @@ console.log("third");
 
 - https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf
 
-Even if the time is set to 0, js will place it at the end of the stack, so every other code will be executed and 1ms later the timeout func
+Even if the time is set to 0, js will place it at the end of the stack, so every other code will be executed and 1ms later the timeout func. So the result would be first, third, second
