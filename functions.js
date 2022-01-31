@@ -7,8 +7,10 @@ export function dbActions(data) {
     password: 'yourpassword',
     database: 'mydb',
   });
+
   let keys = Object.keys(data.users[0]);
   let newKeys = [];
+
   keys.forEach((x) => {
     let s = x?.replace(/\s+/g, '_');
     newKeys.push(s);
@@ -32,7 +34,8 @@ export function dbActions(data) {
     });
   });
   data.users.forEach((element) => {
-    var sqlInsert = `INSERT INTO users (${newKeys[0]},${newKeys[1]},${newKeys[2]},${newKeys[3]},${newKeys[4]},${newKeys[5]}) VALUES (${element}.${newKeys[0]},${newKeys[1]},${newKeys[2]},${newKeys[3]},${newKeys[4]},${newKeys[5]})`;
+    let values = Object.values(element);
+    var sqlInsert = `INSERT INTO users (${newKeys[0]},${newKeys[1]},${newKeys[2]},${newKeys[3]},${newKeys[4]},${newKeys[5]}) VALUES ('${values[0]}','${values[1]}','${values[2]}','${values[3]}','${values[4]}','${values[5]}')`;
     con.query(sqlInsert, function (err, result) {
       if (err) throw err;
       console.log(` record inserted`);

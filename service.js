@@ -18,7 +18,7 @@ export const postData = (data) => {
       console.log(response);
     })
     .catch((error) => {
-      console.error(`Cannot reach API, Status 500 => Response ${error}`);
-      console.log(error.response.data);
+      console.error(`Cannot execute: ${error}`);
+      console.log(error.response);
     });
 };
